@@ -55,14 +55,14 @@ const char* program = NULL;
 
 int main(int argc, char *argv[])
 {
-	program = basename(argv[0]);
+    program = basename(argv[0]);
 
-	if (argc == 1)
-	{
-		fprintf(stderr, "Usage: %s program arguments ...\n\n", program);
-		fprintf(stderr, "%s: you must specify a program to run\n", program);
-		exit(EXIT_FAILURE);
-	}
+    if (argc == 1)
+    {
+        fprintf(stderr, "Usage: %s program arguments ...\n\n", program);
+        fprintf(stderr, "%s: you must specify a program to run\n", program);
+        exit(EXIT_FAILURE);
+    }
 
     //---------------------------------------------------------------------
 
@@ -139,25 +139,25 @@ int main(int argc, char *argv[])
 
     //---------------------------------------------------------------------
 
-	pid_t pid = fork();
-	int status;
+    pid_t pid = fork();
+    int status;
 
-	if (pid == -1)
-	{
-		perror("Error: calling fork");
-		exit(EXIT_FAILURE);
-	}
+    if (pid == -1)
+    {
+        perror("Error: calling fork");
+        exit(EXIT_FAILURE);
+    }
 
-	if (pid == 0)
-	{
-		execvp(argv[1], argv + 1);
-		perror("Error: calling exec");
-		_exit(EXIT_FAILURE);
-	}
-	else
-	{
-		waitpid(pid, &status, 0);
-	}
+    if (pid == 0)
+    {
+        execvp(argv[1], argv + 1);
+        perror("Error: calling exec");
+        _exit(EXIT_FAILURE);
+    }
+    else
+    {
+        waitpid(pid, &status, 0);
+    }
 
     //---------------------------------------------------------------------
 
