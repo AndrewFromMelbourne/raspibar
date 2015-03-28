@@ -89,17 +89,15 @@ int main(int argc, char *argv[])
 
     //---------------------------------------------------------------------
 
-    VC_RECT_T src_rect;
-    VC_RECT_T dst_rect;
+    VC_RECT_T bmp_rect;
 
-
-    vc_dispmanx_rect_set(&dst_rect, 0, 0, 1, 1);
+    vc_dispmanx_rect_set(&bmp_rect, 0, 0, 1, 1);
 
     result = vc_dispmanx_resource_write_data(bgResource,
                                              VC_IMAGE_RGB565,
                                              sizeof(background),
                                              &background,
-                                             &dst_rect);
+                                             &bmp_rect);
     assert(result == 0);
 
     //-------------------------------------------------------------------
@@ -115,6 +113,9 @@ int main(int argc, char *argv[])
     alpha.mask = 0;
 
     //---------------------------------------------------------------------
+
+    VC_RECT_T src_rect;
+    VC_RECT_T dst_rect;
 
     vc_dispmanx_rect_set(&src_rect, 0, 0, 1, 1);
     vc_dispmanx_rect_set(&dst_rect, 0, 0, 0, 0);
